@@ -73,10 +73,12 @@ class HTTPClient(object):
 
     def urlParser(self, url):
         data = urllib.parse.urlparse(url)
-        if data.port == None:
-            data.port = 80
-        if data.path == "":
-            data.path = "/"
+        port = data.port
+        path = data.path
+        if port == None:
+            port = 80
+        if path == "":
+            path = "/"
         return data.hostname, port, path
 
     def GET(self, url, args=None):
