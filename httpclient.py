@@ -98,13 +98,12 @@ class HTTPClient(object):
 
         if args:
             arg = urllib.parse.urlencode(args)
-            length = len(arg)
         else:
-            length = 0
             arg = ''
+        length = len(arg.encode('utf-8'))
 
         self.connect(host, port)
-        request = f'POST {path} HTTP/1.1\r\nHost:{host}\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: {length}\r\nConnection: close\r\n\r\n{arg}'
+        request = f'POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: {length}\r\nConnection: close\r\n\r\n{arg}'
         self.sendall(request)
         data = self.recvall(self.socket)
         self.close()
