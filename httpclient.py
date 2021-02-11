@@ -105,6 +105,7 @@ class HTTPClient(object):
 
         code = self.get_code(data)
         body = self.get_body(data)
+        print("Printing the GET result!\nStatus Code: %d\nBody: %s\nEnd of GET result\n" % (code, body))
         return HTTPResponse(code, body)
 
     def POST(self, url, args=None):
@@ -124,6 +125,7 @@ class HTTPClient(object):
 
         code = self.get_code(data)
         body = self.get_body(data)
+        print("Printing the POST result!\nStatus Code: %d\nBody: %s\nEnd of POST result\n" % (code, body))
         return HTTPResponse(code, body)
 
     def command(self, url, command="GET", args=None):
